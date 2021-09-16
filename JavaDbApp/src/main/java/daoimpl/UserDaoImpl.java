@@ -35,7 +35,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
             Statement stmt = c.createStatement();
             stmt.execute("SELECT "
                     + " u.*, "
-                    + " n.nationality AS nationality, "
+                    + " n.nationality, "
                     + " c.name AS brithplace "
                     + " FROM USER u "
                     + " LEFT JOIN country n ON u.nationality_id = n.id "
@@ -61,7 +61,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
             Statement stmt = c.createStatement();
             stmt.execute("SELECT "
                     + " u.*, "
-                    + " n.nationality AS nationality, "
+                    + " n.nationality  "
                     + " c.name AS brithplace "
                     + " FROM USER u "
                     + " LEFT JOIN country n ON u.nationality_id = n.id "
@@ -70,7 +70,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
             System.out.println(rs);
             while (rs.next()) {
 
-                result = getUser(rs);
+              result = getUser(rs);
             }
         } catch (Exception x) {
             System.out.println("problem oldi");
