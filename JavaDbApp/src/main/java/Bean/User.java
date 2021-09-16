@@ -2,6 +2,7 @@ package Bean;
 
 
 import java.sql.Date;
+import java.util.List;
 
 public class User {
     private int id;
@@ -12,6 +13,7 @@ public class User {
     private Date brithdate;
     private Nationality nationality;
     private Nationality birthPlace;
+    private List<UserSkill> skills;
 
     public User() {
     }
@@ -90,6 +92,14 @@ public class User {
 
     public void setBirthPlace(Nationality birthPlace) {
         this.birthPlace = birthPlace;
+    }
+
+    public List<UserSkill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<UserSkill> skills) {
+        this.skills = skills;
     }
 
     @Override
