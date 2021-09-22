@@ -1,4 +1,4 @@
-package Bean;
+package entity;
 
 public class Skill {
     private int id;
@@ -26,5 +26,13 @@ public class Skill {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Skill{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

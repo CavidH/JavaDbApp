@@ -1,6 +1,6 @@
 package daointer;
 
-import Bean.*;
+import entity.*;
 
 import java.util.List;
 

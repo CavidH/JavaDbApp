@@ -1,3 +1,5 @@
+package main;
+
 import daoimpl.UserDaoImpl;
 import daointer.UserDaoInter;
 

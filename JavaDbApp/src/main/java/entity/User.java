@@ -1,4 +1,4 @@
-package Bean;
+package entity;
 
 
 import java.sql.Date;
@@ -11,8 +11,8 @@ public class User {
     private String phone;
     private String email;
     private Date brithdate;
-    private Nationality nationality;
-    private Nationality birthPlace;
+    private Country nationality;
+    private Country birthPlace;
     private List<UserSkill> skills;
 
     public User() {
@@ -22,7 +22,7 @@ public class User {
     }
 
 
-    public User(int id, String name, String surname, String phone, String email, Date brithdate, Nationality nationality, Nationality birthPlace) {
+    public User(int id, String name, String surname, String phone, String email, Date brithdate, Country nationality, Country birthPlace) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -81,19 +81,19 @@ public class User {
         this.brithdate = brithdate;
     }
 
-    public Nationality getNationality() {
+    public Country getNationality() {
         return nationality;
     }
 
-    public void setNationality(Nationality nationality) {
+    public void setNationality(Country nationality) {
         this.nationality = nationality;
     }
 
-    public Nationality getBirthPlace() {
+    public Country getBirthPlace() {
         return birthPlace;
     }
 
-    public void setBirthPlace(Nationality birthPlace) {
+    public void setBirthPlace(Country birthPlace) {
         this.birthPlace = birthPlace;
     }
 

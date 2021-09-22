@@ -1,7 +1,6 @@
-import Bean.User;
-import daoimpl.UserDaoImpl;
+package main;
+
 import daointer.UserDaoInter;
-import javafx.scene.effect.FloatMapBuilder;
 
 
 public class Main {
@@ -58,11 +57,10 @@ public class Main {
 
 
         UserDaoInter userDaoInter = Context.instanceUserDao();
-        userDaoInter
-                .getall()
+        userDaoInter.
+                getAllSkillByUserId(1)
                 .stream()
                 .forEach(System.out::println);
-
         /*UserDaoImpl userDaoimpl = new UserDaoImpl();
         User u=new User(1,"Cavid","Haciyev","+994554531254","hcavid@gmail.com");
         userDaoimpl.addUser(u);

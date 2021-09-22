@@ -1,9 +1,9 @@
 package daoimpl;
 
-import Bean.Nationality;
-import Bean.Skill;
-import Bean.User;
-import Bean.UserSkill;
+import entity.Country;
+import entity.Skill;
+import entity.User;
+import entity.UserSkill;
 import daointer.AbstractDAO;
 import daointer.UserDaoInter;
 
@@ -25,9 +25,9 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
         String birthplacestr = rs.getString("brithplace");
 
         Date brithdate = rs.getDate("birthdate");
-        Nationality nationality = new Nationality(nationality_id, null, nationalitystr);
-        Nationality brithplace = new Nationality(birthplace_id, birthplacestr, null);
-        return new User(id, name, surname, phone, email, brithdate, nationality, brithplace);
+        Country country = new Country(nationality_id, null, nationalitystr);
+        Country brithplace = new Country(birthplace_id, birthplacestr, null);
+        return new User(id, name, surname, phone, email, brithdate, country, brithplace);
     }
 
 
@@ -130,12 +130,11 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
     }
 
     private UserSkill getUserSkill(ResultSet rs) throws Exception {
-        int id = rs.getInt("id");
+        int userId = rs.getInt("id");
         int skillId = rs.getInt("skill_id");
-        int userId = rs.getInt("user_id");
         String skillName = rs.getString("skill_name");
         int power = rs.getInt("power");
-        return new UserSkill(id, new User(userId), new Skill(skillId, skillName), power);
+        return new UserSkill(null, new User(userId), new Skill(skillId, skillName), power);
 
     }
 
@@ -149,7 +148,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
                     " s.NAME AS skill_name, " +
                     " us.power   " +
                     " FROM " +
-                    " tuser_skill us " +
+                    " user_skill us " +
                     " LEFT JOIN USER u ON us.user_id = u.id " +
                     " LEFT JOIN skill s ON us.skill_id = s.id  " +
                     " WHERE " +

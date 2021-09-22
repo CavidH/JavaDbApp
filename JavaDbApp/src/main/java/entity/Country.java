@@ -1,15 +1,15 @@
-package Bean;
+package entity;
 
-public class Nationality {
+public class Country {
     private int id;
     private String name;
     private String countryName;
 
-    public Nationality() {
+    public Country() {
 
     }
 
-    public Nationality(int id, String name, String countryName) {
+    public Country(int id, String name, String countryName) {
         this.id = id;
         this.name = name;
         this.countryName = countryName;
