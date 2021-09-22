@@ -1,7 +1,9 @@
 package daoimpl;
 
 import Bean.Nationality;
+import Bean.Skill;
 import Bean.User;
+import Bean.UserSkill;
 import daointer.AbstractDAO;
 import daointer.UserDaoInter;
 
@@ -27,6 +29,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
         Nationality brithplace = new Nationality(birthplace_id, birthplacestr, null);
         return new User(id, name, surname, phone, email, brithdate, nationality, brithplace);
     }
+
 
     @Override
     public List<User> getall() {
@@ -70,7 +73,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
             System.out.println(rs);
             while (rs.next()) {
 
-              result = getUser(rs);
+                result = getUser(rs);
             }
         } catch (Exception x) {
             System.out.println("problem oldi");
@@ -124,6 +127,47 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
             return false;
         }
         return true;
+    }
+
+    private UserSkill getUserSkill(ResultSet rs) throws Exception {
+        int id = rs.getInt("id");
+        int skillId = rs.getInt("skill_id");
+        int userId = rs.getInt("user_id");
+        String skillName = rs.getString("skill_name");
+        int power = rs.getInt("power");
+        return new UserSkill(id, new User(userId), new Skill(skillId, skillName), power);
+
+    }
+
+    @Override
+    public List<UserSkill> getAllSkillByUserId(int userId) {
+        List<UserSkill> result = new ArrayList<>();
+        try (Connection c = connection()) {
+            PreparedStatement stmt = c.prepareStatement("SELECT " +
+                    " u.*, " +
+                    " us.skill_id, " +
+                    " s.NAME AS skill_name, " +
+                    " us.power   " +
+                    " FROM " +
+                    " tuser_skill us " +
+                    " LEFT JOIN USER u ON us.user_id = u.id " +
+                    " LEFT JOIN skill s ON us.skill_id = s.id  " +
+                    " WHERE " +
+                    " us.user_id =? ");
+            stmt.setInt(1, userId);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+//            System.out.println(rs);
+            while (rs.next()) {
+                UserSkill u = getUserSkill(rs);
+                result.add(u);
+
+            }
+        } catch (Exception x) {
+
+            x.printStackTrace();
+        }
+        return result;
     }
 
 

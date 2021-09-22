@@ -17,6 +17,9 @@ public class User {
 
     public User() {
     }
+    public User(int id) {
+        this.id=id;
+    }
 
 
     public User(int id, String name, String surname, String phone, String email, Date brithdate, Nationality nationality, Nationality birthPlace) {
